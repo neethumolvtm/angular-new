@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { AuthService } from '../../../shared/services/auth/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
     moduleId: module.id,
@@ -8,8 +10,17 @@ import { FormGroup } from '@angular/forms';
     styleUrls: ['login.component.scss']
 })
 export class LoginComponent {
-    login(event:FormGroup)
-    {
-console.log(event.value);
+    error: any;
+    constructor(private authService: AuthService,
+        private router: Router) { }
+    async login(event: FormGroup) {
+        const { email, password } = event.value;
+        try {
+            await this.authService.loginUser(email, password);
+            this.router.navigate(['/']);
+        } catch (err) {
+            this.error = err.message;
+
+        }
     }
 }
