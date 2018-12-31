@@ -244,3 +244,4 @@ There are several resources used inside this project, of which you can read furt
 * [Webpack](https://webpack.js.org/)
 "# angularPro" 
 "# angularPro" 
+"# angular-new" 

@@ -1,0 +1,19 @@
+<!--component html goes here -->
+<div class="auth-form">
+<ng-content select="h1"></ng-content>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<label>Email Address</label>
+<input type="email" placeholder="email" formControlName="email">
+<label>Password</label>
+<input type="password" placeholder="password" formControlName="password">
+<div *ngIf="emailFormat" class="error">
+    Invalid email format
+</div>
+<div *ngIf="passwordFormat" class="error">
+    Password Required
+</div>
+<ng-content select=".error"></ng-content>
+<div class="auth_action"><ng-content select="button"></ng-content></div>
+<div class="auth_toggle"><ng-content select="a"></ng-content></div>
+</form>
+</div>
