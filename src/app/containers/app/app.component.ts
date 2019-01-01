@@ -9,8 +9,8 @@ import { Subscription } from 'rxjs/Subscription'
   template: `
     <div>
       {{user$ | async | json}}
-      <app-header></app-header>
-      <app-nav></app-nav>
+      <app-header [user]="user$ | async" (logoutdata)="logoutfinal($event)"></app-header>
+      <app-nav *ngIf="(user$ | async)?.authenticated"></app-nav>
       <div class="wrapper">
       <router-outlet></router-outlet>
       </div>
@@ -33,5 +33,8 @@ export class AppComponent {
       //Add 'implements OnDestroy' to the class.
       this.subscription.unsubscribe();
 
+    }
+    logoutfinal(event:any){
+console.log(event);
     }
 }
